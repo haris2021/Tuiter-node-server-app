@@ -17,10 +17,25 @@ const GetAllTuits = (req,res) =>
 
 const AddNewTuit = (req,res) =>
 {
+    console.log("Inside controller")
     let NewTuit = req.body;
+
     NewTuit._id =(new Date()).getTime() + '';
     NewTuit.likes = 0;
     NewTuit.liked = false;
+
+    NewTuit.topic = "Traffic";
+    NewTuit.username = "The Boring Company";
+    NewTuit.handle = "@boringcompany";
+    NewTuit.time = "2h";
+    NewTuit.image = "../../Images/Tesla.png";
+    NewTuit.title = "The Boring Company fixing traffic";
+    NewTuit.replies = 0;
+    NewTuit.dislikes = 0;
+    NewTuit.retuits = 0;
+
+    console.log(NewTuit);
+
     tuits.push(NewTuit);
     res.send(200);
 }
