@@ -14,10 +14,15 @@ import cors from 'cors'
 mongoose.connect('mongodb://127.0.0.1:27017/Tuiter');
 */
 
-const CONNECTION_STRING = 'mongodb+srv://gunasekaranha:jsupDc655fLBAlXg@cluster1.wdqugtq.mongodb.net/?retryWrites=true&w=majority'
+/*
+const CONNECTION_STRING = 'mongodb+srv://gunasekaranha:Dhoni2007@cluster1.wdqugtq.mongodb.net/?retryWrites=true&w=majority'
+*/
                          /* || 'mongodb://127.0.0.1:27017/tuiter'*/
 
+const CONNECTION_STRING = process.env.DB_CONNECTION_STRING
+                          || 'mongodb://127.0.0.1:27017/tuiter'
 mongoose.connect(CONNECTION_STRING);
+
 
 console.log(mongoose.connection.readyState);
 
