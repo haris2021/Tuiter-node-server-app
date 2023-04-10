@@ -1,14 +1,11 @@
-import people from './users.js'
-
-let users = people
+import * as UsersDAO from "./Users-DAO.js"
 
 const UserController = (app) => {
-    console.log("user controller")
     app.get('/api/users', findUsers)
-    app.get('/api/users/:id', findUsersbyID)
+   /* app.get('/api/users/:id', findUsersbyID)
     app.post('/api/users', CreateUsers)
     app.delete('/api/users/:id', DeleteUserbyID)
-    app.put('/api/users/:id', UpdateUserByID)
+    app.put('/api/users/:id', UpdateUserByID)*/
 }
 
 
@@ -16,20 +13,14 @@ const UserController = (app) => {
     res.json(users)
 }*/
 
-const findUsers = (req, res) => {
+const findUsers = async  (req, res) => {
     console.log("find users")
 
-    /*const type = req.query.type
-    console.log(req.query);
-    if(type) {
-        const usersOfType = users.filter(u => u.type === type)
-        res.json(usersOfType)
-        return
-    }
-    res.json(users)*/
-    res.json(users)
+  const users = await UsersDAO.FindUsers();
+   res.json(users);
 }
 
+/*
 const findUsersbyID = (req,res ) =>
 {
     let id = req.params.id;
@@ -59,6 +50,7 @@ const UpdateUserByID = (req, res) =>
    users = users.map( (usr) => usr._id ===uid ? {...usr,...updateuser} : usr )
     res.send(200)
 }
+*/
 
 
 export default UserController

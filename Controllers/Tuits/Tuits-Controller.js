@@ -10,7 +10,7 @@ const TuitController = ( app ) =>
 {
     app.get('/api/tuits', findTuits);
     app.post('/api/tuits',AddNewTuit);
-   app.delete('/api/tuits/:id',DeleteTuit);
+   app.delete('/api/tuits/:tid',DeleteTuit);
    app.put('/api/tuits/:id' , UpdateTuit);
 }
 
@@ -38,7 +38,7 @@ const AddNewTuit = async (req,res) =>
     NewTuit.replies = 0;
     NewTuit.dislikes = 0;
     NewTuit.retuits = 0;
-
+    console.log(NewTuit);
     const InsertedTuit = await TuitsDAO.createTuit(NewTuit);
     res.send(InsertedTuit );
 }
@@ -46,7 +46,7 @@ const AddNewTuit = async (req,res) =>
 
 const DeleteTuit = async (req,res) =>
 {
-    let Deletetuit_id = req.params.id;
+    let Deletetuit_id = req.params.tid;
     let status = await TuitsDAO.deleteTuit(Deletetuit_id);
     res.send(status);
 }
